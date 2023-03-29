@@ -27,7 +27,7 @@ public class AnimeController {
 
 
     @GetMapping("/MyAnimeList")
-    public ModelAndView getWatchlist(){
+    public ModelAndView getAnimelist(){
         String viewName = "animelist";
         Map<String,Object> model =  new HashMap<>();
         model.put("animelist",animeService.findAll());
@@ -50,7 +50,6 @@ public class AnimeController {
      if(bindingResult.hasErrors()){
             return new ModelAndView("animeForm");
      }
-
      animeService.save(anime);
      RedirectView redirect = new RedirectView();
      redirect.setUrl("/MyAnimeList");
@@ -71,7 +70,12 @@ public class AnimeController {
 
 
     @PostMapping("/updateAnime")
-    public ModelAndView updateAnime(@ModelAttribute("anime") Anime anime){
+    public ModelAndView updateAnime(@Valid @ModelAttribute("anime") Anime anime,BindingResult bindingResult){
+
+
+        if(bindingResult.hasErrors()){
+            return new ModelAndView("animeForm");
+        }
         animeService.update(anime);
         RedirectView redirect = new RedirectView();
         redirect.setUrl("/MyAnimeList");

@@ -1,7 +1,6 @@
 package zack.san.ceft.entities;
 
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
